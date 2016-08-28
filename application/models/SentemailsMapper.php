@@ -31,12 +31,12 @@ class Application_Model_SentemailsMapper
 	public function save(Application_Model_Sentemails $sentemails)
 	{
 		//set the data to what is sent in
-		$data = array(
-		    'num' => $sentemails->getNum(),
+		$data = array( 
 			'email'=> $sentemails->getEmail(),
-			'content'=> $sentemails->getContent(),
 			'name' => $sentemails->getName(),
-			'datetime'=> $sentemails->date('Y-m-d H:i:s'),
+			'content'=> $sentemails->getContent(),
+			'datetime'=> $sentemails->getdateTime('Y-m-d H:i:s'),
+			'num' => $sentemails->getNum(),
 		);
 		
 		//put the data into the table
@@ -48,12 +48,12 @@ class Application_Model_SentemailsMapper
 		$resultSet = $this->getDbTable()->fetchAll();
 		$entries = array();
 		foreach ($resultSet as $row){
-			$entry = new Application_Model_Guestbook();
-			$entry->setNum($row->num)
-			      ->setEmail($row->email)
+			$entry = new Application_Model_Sentemails();
+			$entry->setEmail($row->email)
+				  ->setName($row->name)
 				  ->setContent($row->content)
 				  ->setDateTime($row->datetime)
-				  ->setName($row->name);
+				  ->setNum($row->num);
 		    $entries[]=$entry;
 		}
 		return $entries;

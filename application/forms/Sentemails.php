@@ -6,7 +6,19 @@ class Application_Form_Sentemails extends Zend_Form
         // Set the method for the display form to POST
         $this->setMethod('post');
   
-        // Add an email element
+        //Name
+		$this->addElement('text', 'name', array(
+		    'label'      =>'Your name:',
+			'required'   => true
+		));
+		
+		//Phone
+		//$this->addElement('text', 'phone', array(
+		//    'label'      =>'Your phone number:',
+		//	'required'   => true
+		//));
+  
+        // Email Address
         $this->addElement('text', 'email', array(  
             'label'      => 'Your email address:',
             'required'   => true,
@@ -18,34 +30,19 @@ class Application_Form_Sentemails extends Zend_Form
   
         // Add the comment element 
         $this->addElement('textarea', 'comment', array(
-            'label'      => 'Please Comment:',
+            'label'      => 'Please enter content of email:',
             'required'   => true,
             'validators' => array(
                 array('validator' => 'StringLength', 'options' => array(0, 20))
                 )
         ));
   
-        // Add a captcha
-        $this->addElement('captcha', 'captcha', array(
-            'label'      => 'Please enter the 5 letters displayed below:',
-            'required'   => true,
-            'captcha'    => array(
-                'captcha' => 'Figlet',
-                'wordLen' => 5,
-                'timeout' => 300
-            )
-        ));
-  
         // Add the submit button
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,
-            'label'    => 'Sign Guestbook',
+            'label'    => 'Send Email',
         ));
 
-        // And finally add some CSRF protection
-        $this->addElement('hash', 'csrf', array(
-            'ignore' => true,
-        ));
     }
 }
 

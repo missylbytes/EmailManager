@@ -1,4 +1,3 @@
-	<!-- application/views/scripts/guestbook/index.phtml -->
 <p><a href="<?php echo $this->url(
     array(
         'controller' => 'sentemails',
@@ -6,12 +5,12 @@
   
     ),
     'default',
-    true) ?>">Sign Our Guestbook</a></p>
-Guestbook Entries: <br />
+    true) ?>">Send an email</a></p>
+Sent Emails <br />
 <dl>
     <?php foreach ($this->entries as $entry): ?>
     <dt><?php echo $this->escape($entry->email) ?></dt>
     <dd><?php echo $this->escape($entry->content) ?></dd>
     <?php endforeach ?>
 </dl>
-<!--?php endforeach ?--><br>
+<br>

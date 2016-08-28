@@ -11,11 +11,13 @@ class Application_Model_Sentemails
 	public function __construct($user_row = null)
 	{
 		if( !is_null($user_row) && $user_row instanceof Zend_Db_Table_Row ) {
-            $this->num = $user_row->num;
-            $this->addr = $user_row->email;
+            
+            $this->email = $user_row->email;
+			$this->name=$user_row->name;
             $this->content= $user_row->content;
 			$this->datetime= $user_row->datetime;
-			$this->name=$user_row->name;
+			$this->num = $user_row->num;
+			
         }
 	}
 	
@@ -54,13 +56,13 @@ class Application_Model_Sentemails
 	
 	public function setDateTime($ts)
 	{
-		$this->_date_time = $ts;
+		$this->_datetime = $ts;
 		return $this;
 	}
 	
 	public function getDateTime()
 	{
-		return $this->_date_time;
+		return $this->_datetime;
 	}
 	
 	public function setName($name)
