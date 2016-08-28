@@ -5,14 +5,8 @@ class Application_Form_Sentemails extends Zend_Form
     { 
         // Set the method for the display form to POST
         $this->setMethod('post');
-  
-        //Name
-		$this->addElement('text', 'name', array(
-		    'label'      =>'Your name:',
-			'required'   => true
-		));
 		
-		//Phone
+		//Phone Never got around to implementing this
 		//$this->addElement('text', 'phone', array(
 		//    'label'      =>'Your phone number:',
 		//	'required'   => true
@@ -28,13 +22,16 @@ class Application_Form_Sentemails extends Zend_Form
             )
         ));
   
-        // Add the comment element 
-        $this->addElement('textarea', 'comment', array(
+        //Name
+		$this->addElement('text', 'name', array(
+		    'label'      =>'Your name:',
+			'required'   => true
+		));
+  
+        // Add the content element 
+        $this->addElement('textarea', 'content', array(
             'label'      => 'Please enter content of email:',
             'required'   => true,
-            'validators' => array(
-                array('validator' => 'StringLength', 'options' => array(0, 20))
-                )
         ));
   
         // Add the submit button

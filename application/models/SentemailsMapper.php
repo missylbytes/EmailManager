@@ -35,12 +35,16 @@ class Application_Model_SentemailsMapper
 			'email'=> $sentemails->getEmail(),
 			'name' => $sentemails->getName(),
 			'content'=> $sentemails->getContent(),
-			'datetime'=> $sentemails->getdateTime('Y-m-d H:i:s'),
+			'datetime'=> $sentemails->getDatetime(),
 			'num' => $sentemails->getNum(),
 		);
 		
-		//put the data into the table
-		$this->getDbTable()->insert($data);
+		if (null === ($num = $sentemails->getNum())) {
+                unset($data['num']);
+                $this->getDbTable()->insert($data);
+            } else {
+                $this->getDbTable()->update($data, array('num = ?' => $num));
+            }
 	}
 
 	public function getAll()
